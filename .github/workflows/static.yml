@@ -1,4 +1,4 @@
-name: Conditional Deploy to GitHub Pages (Deploy at Midnight IST)
+name: Scheduled Deploy to GitHub Pages
 
 on:
   push:
@@ -24,50 +24,49 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract deployment time from file
-        id: extract_time
+      - name: Extract and compare deployment time
+        id: check_time
         run: |
-          # Extract deployment time (midnight IST in this case)
-          DEPLOY_TIME=$(grep "deployment_time:" .github/workflows/deploy.txt | awk '{print $2}')
+          echo "🔍 Reading deployment time from file..."
+          DEPLOY_TIME=$(grep "deployment_time:" .github/workflows/deploy.txt | sed -E 's/.*"([^"]+)".*/\1/')
           
           if [ -z "$DEPLOY_TIME" ]; then
-            echo "No deployment_time found. Skipping deploy."
+            echo "❌ No deployment_time found. Exiting..."
             echo "should_deploy=false" >> $GITHUB_OUTPUT
             exit 0
           fi
 
-          # Convert the scheduled deployment time from IST (00:00) to UTC (18:30 previous day)
-          CURRENT_TIME=$(date -u +%s)
-          # Replace "deployment_time" value with your desired time in IST
-          # Example: 2025-09-07T00:00:00+05:30 (Midnight IST)
-          # Convert this time to UTC
-          SCHEDULED_TIME=$(date -u -d "$DEPLOY_TIME" +%s)
+          echo "🕒 Deployment Time (from file): $DEPLOY_TIME"
 
-          echo "Current UTC time: $(date -u)"
-          echo "Scheduled deployment time: $DEPLOY_TIME"
+          NOW=$(date -u +%s)
+          FUTURE=$(date -u -d "$DEPLOY_TIME" +%s)
 
-          if [ "$CURRENT_TIME" -lt "$SCHEDULED_TIME" ]; then
-            echo "Scheduled time is in the future. Skipping deploy."
+          echo "🕒 Current UTC Time: $(date -u)"
+          echo "🕒 Scheduled UTC Time: $(date -u -d "$DEPLOY_TIME")"
+
+          if [ "$NOW" -lt "$FUTURE" ]; then
+            echo "⏳ Scheduled time is in the future. Skipping deployment."
             echo "should_deploy=false" >> $GITHUB_OUTPUT
           else
-            echo "Time has passed. Proceeding with deploy."
+            echo "✅ Time passed. Proceeding with deployment."
             echo "should_deploy=true" >> $GITHUB_OUTPUT
+          fi
 
-      - name: Exit if deploy is not ready
-        if: steps.extract_time.outputs.should_deploy == 'false'
-        run: echo "Not yet time to deploy. Exiting..."
+      - name: Exit if deployment time not reached
+        if: steps.check_time.outputs.should_deploy == 'false'
+        run: echo "⏹️ Deployment is scheduled for later. Exiting..."
 
-      - name: Setup Pages
-        if: steps.extract_time.outputs.should_deploy == 'true'
+      - name: Setup GitHub Pages
+        if: steps.check_time.outputs.should_deploy == 'true'
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        if: steps.extract_time.outputs.should_deploy == 'true'
+      - name: Upload site artifact
+        if: steps.check_time.outputs.should_deploy == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
       - name: Deploy to GitHub Pages
-        if: steps.extract_time.outputs.should_deploy == 'true'
+        if: steps.check_time.outputs.should_deploy == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
