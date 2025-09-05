@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - ".github/workflows/deploy.yml"  # Trigger only when this file is edited
+      - ".github/workflows/deploy.txt"  # Trigger only when this file is edited
   workflow_dispatch:
 
 permissions:
