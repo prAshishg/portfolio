@@ -1,43 +1,71 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Conditional Deploy to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches:
+      - main
+    paths:
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Extract scheduled deploy time
+        id: extract_time
+        run: |
+          # Extract the datetime line (you can adjust the key as needed)
+          SCHEDULED_TIME=$(grep "deployment_time:" .github/workflows/deploy.yml | awk '{print $2}')
+          
+          if [ -z "$SCHEDULED_TIME" ]; then
+            echo "No deployment_time found. Skipping deploy."
+            echo "should_deploy=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Convert to Unix timestamps
+          NOW=$(date -u +%s)
+          FUTURE=$(date -u -d "$SCHEDULED_TIME" +%s)
+
+          echo "Current UTC time: $(date -u)"
+          echo "Scheduled deploy time: $SCHEDULED_TIME"
+
+          if [ "$NOW" -lt "$FUTURE" ]; then
+            echo "Scheduled time is in the future. Skipping deploy."
+            echo "should_deploy=false" >> $GITHUB_OUTPUT
+          else
+            echo "Time has passed. Proceeding with deploy."
+            echo "should_deploy=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Exit if deploy not ready
+        if: steps.extract_time.outputs.should_deploy == 'false'
+        run: echo "Not time to deploy yet. Exiting..."
+
       - name: Setup Pages
+        if: steps.extract_time.outputs.should_deploy == 'true'
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
+        if: steps.extract_time.outputs.should_deploy == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: '.'
+
       - name: Deploy to GitHub Pages
+        if: steps.extract_time.outputs.should_deploy == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
