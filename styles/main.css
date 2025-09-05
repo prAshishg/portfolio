@@ -703,6 +703,11 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
+    .hero-avatar {
+        width: 120px;
+        height: 120px;
+    }
+
     .header-content {
         flex-direction: column;
         gap: 15px;
