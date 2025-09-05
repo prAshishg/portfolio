@@ -1,11 +1,11 @@
-name: Scheduled Deploy to GitHub Pages
+name: Deploy static content to Pages (On File Edit)
 
 on:
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/deploy.txt"
+      - ".github/workflows/deploy.txt"  # Trigger only when this file is edited
   workflow_dispatch:
 
 permissions:
@@ -24,49 +24,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract and compare deployment time
-        id: check_time
-        run: |
-          echo "🔍 Reading deployment time from file..."
-          DEPLOY_TIME=$(grep "deployment_time:" .github/workflows/deploy.txt | sed -E 's/.*"([^"]+)".*/\1/')
-          
-          if [ -z "$DEPLOY_TIME" ]; then
-            echo "❌ No deployment_time found. Exiting..."
-            echo "should_deploy=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          echo "🕒 Deployment Time (from file): $DEPLOY_TIME"
-
-          NOW=$(date -u +%s)
-          FUTURE=$(date -u -d "$DEPLOY_TIME" +%s)
-
-          echo "🕒 Current UTC Time: $(date -u)"
-          echo "🕒 Scheduled UTC Time: $(date -u -d "$DEPLOY_TIME")"
-
-          if [ "$NOW" -lt "$FUTURE" ]; then
-            echo "⏳ Scheduled time is in the future. Skipping deployment."
-            echo "should_deploy=false" >> $GITHUB_OUTPUT
-          else
-            echo "✅ Time passed. Proceeding with deployment."
-            echo "should_deploy=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Exit if deployment time not reached
-        if: steps.check_time.outputs.should_deploy == 'false'
-        run: echo "⏹️ Deployment is scheduled for later. Exiting..."
-
-      - name: Setup GitHub Pages
-        if: steps.check_time.outputs.should_deploy == 'true'
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload site artifact
-        if: steps.check_time.outputs.should_deploy == 'true'
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
       - name: Deploy to GitHub Pages
-        if: steps.check_time.outputs.should_deploy == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
