@@ -1,11 +1,11 @@
-name: Conditional Deploy to GitHub Pages
+name: Deploy static content to Pages (On File Edit)
 
 on:
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/deploy.yml"
+      - ".github/workflows/deploy.yml"  # Trigger only when this file is edited
   workflow_dispatch:
 
 permissions:
@@ -24,48 +24,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Extract scheduled deploy time
-        id: extract_time
-        run: |
-          # Extract the datetime line (you can adjust the key as needed)
-          SCHEDULED_TIME=$(grep "deployment_time:" .github/workflows/deploy.yml | awk '{print $2}')
-          
-          if [ -z "$SCHEDULED_TIME" ]; then
-            echo "No deployment_time found. Skipping deploy."
-            echo "should_deploy=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          # Convert to Unix timestamps
-          NOW=$(date -u +%s)
-          FUTURE=$(date -u -d "$SCHEDULED_TIME" +%s)
-
-          echo "Current UTC time: $(date -u)"
-          echo "Scheduled deploy time: $SCHEDULED_TIME"
-
-          if [ "$NOW" -lt "$FUTURE" ]; then
-            echo "Scheduled time is in the future. Skipping deploy."
-            echo "should_deploy=false" >> $GITHUB_OUTPUT
-          else
-            echo "Time has passed. Proceeding with deploy."
-            echo "should_deploy=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Exit if deploy not ready
-        if: steps.extract_time.outputs.should_deploy == 'false'
-        run: echo "Not time to deploy yet. Exiting..."
-
       - name: Setup Pages
-        if: steps.extract_time.outputs.should_deploy == 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        if: steps.extract_time.outputs.should_deploy == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
       - name: Deploy to GitHub Pages
-        if: steps.extract_time.outputs.should_deploy == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
