@@ -125,14 +125,29 @@ nav a:hover:after {
     background: linear-gradient(135deg, var(--background) 0%, var(--light) 100%);
 }
 
-.hero-avatar {
+/*.hero-avatar {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid var(--primary);
     margin-bottom: 20px;
+}*/
+
+.hero-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top; /* Focus on face */
+    border: 4px solid var(--primary);
+    margin-bottom: 20px;
+    image-rendering: -webkit-optimize-contrast; /* Improves rendering */
+    image-rendering: crisp-edges;
+    filter: brightness(1.05) contrast(1.05); /* Minor enhancement */
+    background-color: #f0f0f0; /* Placeholder color */
 }
+
 
 .hero h1 {
     font-size: 3rem;
