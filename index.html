@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashish Gupta - Senior Java Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/modal.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-code logo-icon"></i>
+                <span class="logo-text">Ashish Gupta</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <img src="./assets/ashish_gupta.jpg" alt="Ashish Gupta" class="hero-avatar">
+            <h1>Ashish Gupta</h1>
+            <div class="hero-title">Senior Java Developer | 4.6+ Years Experience</div>
+            <p class="hero-description">Java Developer with 4.6+ years of experience in designing, developing, and maintaining enterprise-grade applications with a strong focus on performance, scalability, and security.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#projects" class="btn btn-secondary">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <ul class="skill-list">
+                        <li>Java (8, 17) SE & EE</li>
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-cogs"></i> Frameworks</h3>
+                    <ul class="skill-list">
+                        <li>Spring Boot</li>
+                        <li>Spring MVC</li>
+                        <li>Spring Security</li>
+                        <li>Hibernate</li>
+                        <li>EJB</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Databases</h3>
+                    <ul class="skill-list">
+                        <li>MySQL</li>
+                        <li>MongoDB</li>
+                        <li>Oracle</li>
+                        <li>Firebase</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li>Apache Kafka</li>
+                        <li>AWS (EC2, S3, API Gateway)</li>
+                        <li>Docker</li>
+                        <li>Jenkins</li>
+                        <li>WebLogic Server</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">July 2024 – Present</div>
+                        <div class="timeline-company">Nexsys IT Consulting Pvt. Ltd. (Client: Accelya Solutions India Ltd.)</div>
+                        <div class="timeline-role">Senior Software Engineer (Java Developer)</div>
+                        <p class="timeline-description">Delivered Change Requests from scratch within tight deadlines. Resolved out-of-scope bugs, significantly improving system stability.</p>
+                        <p class="timeline-description">Implemented Drools rule engine with JMS for rule storage and processing.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">January 2021 – June 2024</div>
+                        <div class="timeline-company">Safexpay Technologies Pvt. Ltd.</div>
+                        <div class="timeline-role">Senior Software Developer (Java Developer)</div>
+                        <p class="timeline-description">Developed and optimized FinTech solutions for secure digital payments. Integrated multiple payment gateways with Spring Boot and Hibernate.</p>
+                        <p class="timeline-description">Led several software modules, ensuring quality, scalability, and robustness.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">October 2018 – January 2021</div>
+                        <div class="timeline-company">Freelance (Self- While pursuing B.Sc.)</div>
+                        <div class="timeline-role">FullStack Developer</div>
+                        <p class="timeline-description">Designed and developed full-stack applications including Chat App, Church Booking System, Ride Booking App, and Vision Reminder App.</p>
+                        <p class="timeline-description">Worked independently, managing full lifecycle: planning, development, testing, deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Key Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./assets/payment_aggregator.png" alt="Payment Aggregator">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Payment Aggregator</h3>
+                        <p class="project-description">Built secure payment aggregation and gateway integration system with real-time transaction monitoring for fraud detection.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                        <a class="project-link view-details" data-project="payment-aggregator">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./assets/neo_banking.png" alt="Neo Banking">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Neo Banking (Remittance/VAS)</h3>
+                        <p class="project-description">Created real-time remittance solution with REST APIs and integrated value-added services to enhance financial management capabilities.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <a class="project-link view-details" data-project="neo-banking">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./assets/skychain.png" alt="Skychain">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Skychain - Cargo Management</h3>
+                        <p class="project-description">Emirates SkyCargo's cargo booking and management platform that empowers real-time booking, tracking, operations, and claims handling.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">EJB</span>
+                            <span class="tech-tag">Oracle</span>
+                        </div>
+                        <a class="project-link view-details" data-project="skychain">View Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div>
+                    <h3>Contact Information</h3>
+                    
+                    <div class="clickable-contact" onclick="window.location.href='mailto:ashishgupta9819r@gmail.com'">
+                        <i class="fas fa-envelope"></i>
+                        <span>ashishgupta9819r@gmail.com</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    
+                    <div class="clickable-contact" onclick="window.location.href='tel:+91907609020'">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 907609020</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    
+                    <div class="clickable-contact" onclick="window.open('https://wa.me/91907609020', '_blank')">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp: +91 907609020</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    
+                    <div class="clickable-contact" onclick="window.open('https://maps.app.goo.gl/knG7pxcajnZ8qHwp9', '_blank')">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Mumbai, Maharashtra, India</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;">Professional Profiles</h3>
+                    
+                    <div class="clickable-contact" onclick="window.open('https://in.linkedin.com/in/pr-ashish-gupta', '_blank')">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn Profile</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    
+                    <div class="clickable-contact" onclick="window.open('https://github.com/prAshishg', '_blank')">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub Profile</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    
+                    <div class="clickable-contact" onclick="window.open('https://stackoverflow.com/users/14487117/ashish-gupta', '_blank')">
+                        <i class="fab fa-stack-overflow"></i>
+                        <span>StackOverflow Profile</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                    
+                    <div class="social-links" style="margin-top: 30px;">
+                        <a href="https://in.linkedin.com/in/pr-ashish-gupta" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/prAshishg" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://stackoverflow.com/users/14487117/ashish-gupta" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Send a Message</h3>
+                    <div class="contact-form">
+                        <form id="messageForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" class="form-control" placeholder="Enter subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" class="form-control" placeholder="Enter your message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- StackOverflow Section -->
+            <div class="stackoverflow-section">
+                <i class="fab fa-stack-overflow stackoverflow-icon"></i>
+                <h3>My StackOverflow Profile</h3>
+                <p>Check out my contributions to the developer community on StackOverflow</p>
+                
+                <div class="stackoverflow-stats">
+                    <div class="stat">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Reputation</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Answers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Questions</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Badges</div>
+                    </div>
+                </div>
+                
+                <a href="https://stackoverflow.com/users/14487117/ashish-gupta" target="_blank" class="btn btn-primary">
+                    Visit My StackOverflow Profile
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Ashish Gupta</h3>
+                    <p>Senior Java Developer with 4.6+ years of experience in designing, developing, and maintaining enterprise-grade applications.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="quick-links">
+                        <li><a href="#skills"><i class="fas fa-arrow-right"></i> Skills</a></li>
+                        <li><a href="#experience"><i class="fas fa-arrow-right"></i> Experience</a></li>
+                        <li><a href="#projects"><i class="fas fa-arrow-right"></i> Projects</a></li>
+                        <li><a href="#contact"><i class="fas fa-arrow-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li>Email: ashishgupta9819r@gmail.com</li>
+                        <li>Phone: +91 907609020</li>
+                        <li>Location: Mumbai, Maharashtra</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Ashish Gupta. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <div id="payment-aggregator-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Payment Aggregator</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="./assets/payment_aggregator.png" alt="Payment Aggregator" class="modal-image">
+                <p><strong>Tech Stack:</strong> Java, Spring Boot, Hibernate, MySQL, MongoDB, AWS, Kafka, JSP</p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">Hibernate</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Kafka</span>
+                    <span class="tech-tag">JSP</span>
+                </div>
+                <p>Built secure payment aggregation and gateway integration system with real-time transaction monitoring for fraud detection. Ensured compliance with financial regulations and transaction security. Implemented real-time transaction monitoring for fraud detection. Automated business operations and improved management processes. Integrated multiple payment gateways for enhanced transaction efficiency.</p>
+                <p><strong>Key Features:</strong></p>
+                <ul class="modal-feature-list">
+                    <li>Secure payment processing with encryption</li>
+                    <li>Multi-gateway integration</li>
+                    <li>Real-time fraud detection system</li>
+                    <li>Automated transaction reporting</li>
+                    <li>Compliance with financial regulations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="neo-banking-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Neo Banking (Remittance/VAS)</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="./assets/neo_banking.png" alt="Neo Banking" class="modal-image">
+                <p><strong>Tech Stack:</strong> Java, Python, Spring Boot, Flask, Kafka, MongoDB, AngularJS</p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">Kafka</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">AngularJS</span>
+                </div>
+                <p>Created real-time remittance solution with REST APIs and integrated value-added services to enhance financial management capabilities. Optimized transaction speed and scalability with microservices architecture. Implemented real-time notifications and transaction tracking.</p>
+                <p><strong>Key Features:</strong></p>
+                <ul class="modal-feature-list">
+                    <li>Real-time remittance processing</li>
+                    <li>Multi-currency support</li>
+                    <li>Value-added services integration</li>
+                    <li>Microservices architecture</li>
+                    <li>Real-time notifications</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="skychain-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Skychain - Cargo Management</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="./assets/skychain.png" alt="Skychain" class="modal-image">
+                <p><strong>Tech Stack:</strong> Java, Spring Boot, EJB, Oracle, Weblogic</p>
+                <div class="modal-tech">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Spring Boot</span>
+                    <span class="tech-tag">EJB</span>
+                    <span class="tech-tag">Oracle</span>
+                    <span class="tech-tag">Weblogic</span>
+                </div>
+                <p>Emirates SkyCargo's cargo booking and management platform that empowers real-time booking, tracking, operations, and claims handling. Provides automatic status notifications via email or SMS and allows tracking of multiple shipments simultaneously — enhancing customer visibility and reducing help-desk burden.</p>
+                <p><strong>Key Features:</strong></p>
+                <ul class="modal-feature-list">
+                    <li>Real-time cargo booking system</li>
+                    <li>Multi-shipment tracking</li>
+                    <li>Automatic status notifications</li>
+                    <li>Capacity management</li>
+                    <li>Route optimization</li>
+                    <li>SkyClaims module for cargo claims</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
