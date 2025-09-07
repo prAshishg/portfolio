@@ -26,6 +26,96 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
+// // Mobile detection for contact links
+// function isMobileDevice() {
+//     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+// }
+
+// // Update contact links based on device
+// document.addEventListener('DOMContentLoaded', function() {
+//     const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+//     const whatsappLinks = document.querySelectorAll('a[href^="https://wa.me/"]');
+    
+//     if (!isMobileDevice()) {
+//         // If not mobile, change tel: links to click-to-copy
+//         phoneLinks.forEach(link => {
+//             link.addEventListener('click', function(e) {
+//                 e.preventDefault();
+//                 const phoneNumber = this.href.replace('tel:', '');
+//                 navigator.clipboard.writeText(phoneNumber).then(() => {
+//                     alert('Phone number copied to clipboard: ' + phoneNumber);
+//                 });
+//             });
+//         });
+        
+//         // If not mobile, change WhatsApp links to open in new tab
+//         whatsappLinks.forEach(link => {
+//             link.setAttribute('target', '_blank');
+//         });
+//     }
+// });
+
+
+// Modern mobile detection function
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+           (navigator.maxTouchPoints > 0 && /MacIntel/.test(navigator.platform));
+}
+
+// Update contact links based on device
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    const whatsappLinks = document.querySelectorAll('a[href^="https://wa.me/"]');
+    
+    if (!isMobileDevice()) {
+        // If not mobile, change tel: links to click-to-copy
+        phoneLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const phoneNumber = this.getAttribute('href').replace('tel:', '');
+                
+                // Use modern Clipboard API if available
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(phoneNumber).then(() => {
+                        alert('Phone number copied to clipboard: ' + phoneNumber);
+                    }).catch(err => {
+                        fallbackCopyText(phoneNumber);
+                    });
+                } else {
+                    fallbackCopyText(phoneNumber);
+                }
+            });
+        });
+        
+        // If not mobile, change WhatsApp links to open in new tab
+        whatsappLinks.forEach(link => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    }
+    
+    // Fallback method for copying text
+    function fallbackCopyText(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            const successful = document.execCommand('copy');
+            alert(successful ? 'Phone number copied to clipboard: ' + text : 'Failed to copy phone number');
+        } catch (err) {
+            alert('Failed to copy phone number: ' + err);
+        }
+        
+        document.body.removeChild(textArea);
+    }
+});
+
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {

@@ -173,6 +173,7 @@ nav a:hover:after {
     justify-content: center;
     gap: 15px;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .btn {
@@ -185,6 +186,10 @@ nav a:hover:after {
     border: none;
     cursor: pointer;
 
+}
+
+.btn i {
+    margin-right: 8px;
 }
 
 .btn-primary {
@@ -735,6 +740,11 @@ textarea.form-control {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 200px;
+        text-align: center;
     }
     
     .contact-grid {
