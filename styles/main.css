@@ -355,6 +355,15 @@ nav a:hover:after {
     margin-bottom: 10px;
 }
 
+.sub-project-key {
+    margin-left: 10px;
+}
+
+.sub-project-value {
+    margin-left: 20px;
+    margin-top: 6px;
+}
+
 /* Projects Section */
 .projects-grid {
     display: grid;
